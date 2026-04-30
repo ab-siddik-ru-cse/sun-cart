@@ -1,0 +1,167 @@
+[
+    {
+        "id": 1,
+        "name": "UV Protection Sunglasses",
+        "brand": "SunShade",
+        "price": 15,
+        "rating": 4.7,
+        "stock": 10,
+        "description": "Stylish UV protection sunglasses perfect for summer outings.",
+        "image": "https://images.unsplash.com/photo-1572635196237-14b3f281503f?q=80&w=880&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+        "category": "Accessories"
+    },
+    {
+        "id": 2,
+        "name": "Floral Summer Dress",
+        "brand": "BreezeWear",
+        "price": 35,
+        "rating": 4.8,
+        "stock": 15,
+        "description": "Lightweight and breathable floral dress for a cool summer look.",
+        "image": "https://images.unsplash.com/photo-1762154057377-cc9d3dd6900c?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fEZsb3JhbCUyMFN1bW1lciUyMERyZXNzfGVufDB8fDB8fHww",
+        "category": "Outfits"
+    },
+    {
+        "id": 3,
+        "name": "SPF 50+ Sunscreen",
+        "brand": "GlowGuard",
+        "price": 20,
+        "rating": 4.9,
+        "stock": 25,
+        "description": "Non-greasy SPF 50+ sunscreen to keep your skin protected from UV rays.",
+        "image": "https://images.unsplash.com/photo-1598662972299-5408ddb8a3dc?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+        "category": "Skincare"
+    },
+    {
+        "id": 4,
+        "name": "Waterproof Beach Bag",
+        "brand": "AquaPack",
+        "price": 25,
+        "rating": 4.5,
+        "stock": 12,
+        "description": "Spacious waterproof bag to carry all your beach essentials safely.",
+        "image": "https://images.unsplash.com/photo-1506094543314-3747d5123bbe?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+        "category": "Accessories"
+    },
+    {
+        "id": 5,
+        "name": "Cotton Beach Towel",
+        "brand": "SandFree",
+        "price": 18,
+        "rating": 4.6,
+        "stock": 30,
+        "description": "Extra-large, quick-dry cotton towel perfect for lounging on the sand.",
+        "image": "https://images.unsplash.com/photo-1659554200362-a41ffd398024?q=80&w=735&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+        "category": "Beach Gear"
+    },
+    {
+        "id": 6,
+        "name": "Men's Tropical Shirt",
+        "brand": "IslandVibe",
+        "price": 28,
+        "rating": 4.7,
+        "stock": 20,
+        "description": "Classic tropical print shirt made from premium breathable linen.",
+        "image": "https://i.ibb.co/HCr5f1m/shirt-1.jpg",
+        "category": "Outfits"
+    },
+    {
+        "id": 7,
+        "name": "Polarized Wayfarers",
+        "brand": "SunShade",
+        "price": 22,
+        "rating": 4.8,
+        "stock": 8,
+        "description": "Classic polarized sunglasses for reduced glare and maximum clarity.",
+        "image": "https://i.ibb.co/3Wf4R5D/sunglasses-2.jpg",
+        "category": "Accessories"
+    },
+    {
+        "id": 8,
+        "name": "Aloe Vera Soothing Gel",
+        "brand": "GlowGuard",
+        "price": 12,
+        "rating": 4.9,
+        "stock": 40,
+        "description": "Pure aloe vera gel to soothe and hydrate skin after sun exposure.",
+        "image": "https://i.ibb.co/YyYfG4A/aloe-1.jpg",
+        "category": "Skincare"
+    },
+    {
+        "id": 9,
+        "name": "Straw Sun Hat",
+        "brand": "BreezeWear",
+        "price": 16,
+        "rating": 4.4,
+        "stock": 15,
+        "description": "Wide-brimmed straw hat for ultimate facial sun protection.",
+        "image": "https://i.ibb.co/5R8Xq2m/hat-1.jpg",
+        "category": "Accessories"
+    },
+    {
+        "id": 10,
+        "name": "Insulated Water Bottle",
+        "brand": "HydroCool",
+        "price": 24,
+        "rating": 4.8,
+        "stock": 50,
+        "description": "Keep your drinks ice-cold for 24 hours during hot summer days.",
+        "image": "https://i.ibb.co/T2S5X8B/bottle-1.jpg",
+        "category": "Accessories"
+    },
+    {
+        "id": 11,
+        "name": "Quick-Dry Swim Trunks",
+        "brand": "AquaPack",
+        "price": 30,
+        "rating": 4.6,
+        "stock": 18,
+        "description": "Stylish and comfortable swim trunks with quick-dry technology.",
+        "image": "https://i.ibb.co/M0T0D7Z/trunks-1.jpg",
+        "category": "Outfits"
+    },
+    {
+        "id": 12,
+        "name": "Cooling Face Mist",
+        "brand": "GlowGuard",
+        "price": 14,
+        "rating": 4.5,
+        "stock": 35,
+        "description": "Instant hydration and cooling effect for your face on the go.",
+        "image": "https://i.ibb.co/VvYfG3C/mist-1.jpg",
+        "category": "Skincare"
+    },
+    {
+        "id": 13,
+        "name": "Comfortable Flip Flops",
+        "brand": "SandFree",
+        "price": 12,
+        "rating": 4.3,
+        "stock": 45,
+        "description": "Durable and lightweight flip flops designed for long beach walks.",
+        "image": "https://i.ibb.co/Y2S5X7L/flipflops-1.jpg",
+        "category": "Beach Gear"
+    },
+    {
+        "id": 14,
+        "name": "Linen Summer Shorts",
+        "brand": "BreezeWear",
+        "price": 26,
+        "rating": 4.7,
+        "stock": 22,
+        "description": "Breathable linen shorts, an essential for any summer wardrobe.",
+        "image": "https://i.ibb.co/HCr5f0N/shorts-1.jpg",
+        "category": "Outfits"
+    },
+    {
+        "id": 15,
+        "name": "Portable Beach Umbrella",
+        "brand": "IslandVibe",
+        "price": 45,
+        "rating": 4.6,
+        "stock": 5,
+        "description": "Easy to set up, UV-resistant umbrella for your own spot of shade.",
+        "image": "https://i.ibb.co/3Wf4R4A/umbrella-1.jpg",
+        "category": "Beach Gear"
+    }
+]
