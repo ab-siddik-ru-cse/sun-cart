@@ -48,6 +48,7 @@ const RegisterPage = () => {
                             <br />
                             <input
                                 type="text"
+                                placeholder="Jhon Doe"
                                 className="input w-full input-bordered input-sm h-10 focus:input-warning bg-gray-50 border-gray-200"
                                 value={formData.name}
                                 onChange={(e) => setFormData({ ...formData, name: e.target.value })}
@@ -60,6 +61,7 @@ const RegisterPage = () => {
                             <br />
                             <input
                                 type="email"
+                                placeholder="example@mail.com"
                                 className="input w-full input-bordered input-sm h-10 focus:input-warning bg-gray-50 border-gray-200"
                                 value={formData.email}
                                 onChange={(e) => setFormData({ ...formData, email: e.target.value })}
@@ -72,6 +74,7 @@ const RegisterPage = () => {
                             <br />
                             <input
                                 type="text"
+                                placeholder="https//:www.webpic.com"
                                 className="input w-full input-bordered input-sm h-10 focus:input-warning bg-gray-50 border-gray-200"
                                 value={formData.image}
                                 onChange={(e) => setFormData({ ...formData, image: e.target.value })}
@@ -84,6 +87,7 @@ const RegisterPage = () => {
                             <br />
                             <input
                                 type="password"
+                                placeholder="********"
                                 className="input w-full input-bordered input-sm h-10 focus:input-warning bg-gray-50 border-gray-200"
                                 value={formData.password}
                                 onChange={(e) => setFormData({ ...formData, password: e.target.value })}

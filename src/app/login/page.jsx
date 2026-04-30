@@ -16,7 +16,7 @@ const LoginPage = () => {
         await authClient.signIn.email({
             email,
             password,
-            callbackURL: "/", // সফল লগইন এর পর হোম পেজে যাবে
+            callbackURL: "/",
         }, {
             onError: (ctx) => {
                 toast.error(ctx.error.message || "Login failed!");

@@ -1,12 +1,13 @@
+import Link from 'next/link';
 import React from 'react';
 
 const AppNavar = () => {
 
     const navLinks = (
         <>
-            <li><a className="hover:text-orange-500 transition-all">Home</a></li>
-            <li><a className="hover:text-orange-500 transition-all">Products</a></li>
-            <li><a className="hover:text-orange-500 transition-all">My Profile</a></li>
+            <li><Link href={'/'} className="hover:text-orange-500 transition-all">Home</Link></li>
+            <li><Link href={'/products'} className="hover:text-orange-500 transition-all">Products</Link></li>
+            <li><Link href={'/profile'} className="hover:text-orange-500 transition-all">My Profile</Link></li>
         </>
     );
 
@@ -15,10 +16,10 @@ const AppNavar = () => {
 
             <div className="max-w-7xl mx-auto px-4 lg:px-8 flex items-center justify-between">
 
-                <div className="font-extrabold text-xl sm:text-2xl md:text-3xl 
+                <Link href={'/'} className="font-extrabold text-xl sm:text-2xl md:text-3xl 
                 bg-gradient-to-r from-orange-500 to-yellow-500 text-transparent bg-clip-text">
                     SunCart
-                </div>
+                </Link>
 
                 <ul className="hidden lg:flex gap-8 font-medium">
                     {navLinks}
@@ -33,9 +34,9 @@ const AppNavar = () => {
                         </span>
                     </div>
 
-                    <a className="hidden sm:block hover:text-purple-500 cursor-pointer">
+                    <Link href={'/login'} className="hidden sm:block hover:text-purple-500 cursor-pointer">
                         Login
-                    </a>
+                    </Link>
                     <div className="dropdown dropdown-end lg:hidden">
                         <div tabIndex={0} role="button" className="cursor-pointer">
                             <i className="fa-solid fa-bars text-xl"></i>
