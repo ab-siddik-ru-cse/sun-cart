@@ -7,6 +7,9 @@ const AppNavar = () => {
     const { data: session, isPending } = authClient.useSession();
 
     const user = session?.user;
+    const handleSignOut = async () =>{
+        await authClient.signOut();
+    }
 
     const navLinks = (
         <>
@@ -50,12 +53,13 @@ const AppNavar = () => {
                             <Link href="/profile" className="avatar online placeholder cursor-pointer">
                                 <div className="bg-neutral text-neutral-content rounded-full w-10 border-2 border-orange-400">
                                     {user.image ? (
-                                        <img src={user.image} alt={user.name} />
+                                        <img src={user.image}/>
                                     ) : (
                                         <span className="text-xl">{user.name?.charAt(0).toUpperCase()}</span>
                                     )}
                                 </div>
                             </Link>
+                            <button onClick={handleSignOut} className='btn btn-danger'>Log Out</button>
                         </div>
                     ) : (
                         /* User Logged Out: Login & Signup */
