@@ -4,28 +4,29 @@ import React, { useState, useEffect, useContext } from "react";
 import Link from "next/link";
 import { useParams } from "next/navigation";
 import { AppContext } from "@/app/context/AppContext";
+import toast from "react-hot-toast";
 
 const ProductDetails = () => {
+    const [cart, setCart] = useState([]);
+    console.log(cart);
 
-    const {products} = useContext(AppContext);
+    const { products } = useContext(AppContext);
     const { id } = useParams();
-    const [product, setProduct] = useState(null);
+
     const [quantity, setQuantity] = useState(1);
 
-    useEffect(() => {
-        const foundProduct = products.find((p) => p.id === parseInt(id));
-        setProduct(foundProduct);
-    }, [id]);
+    const product = products.find((p) => parseInt(p.id) === parseInt(id));
 
     if (!product) {
         return (
             <div className="min-h-screen flex items-center justify-center">
-                <span className="loading loading-spinner loading-lg text-orange-500"></span>
+                <h1>No Products Found..!</h1>
             </div>
         );
     }
 
-    const handleAddToCart = () => {
+    const handleAddToCart = (product) => {
+        setCart([...cart, product]);
         toast.success(`${product.name} added to cart!`, {
             icon: '🔥',
             style: {
@@ -116,7 +117,7 @@ const ProductDetails = () => {
 
                             <div className="flex flex-col sm:flex-row gap-4">
                                 <button
-                                    onClick={handleAddToCart}
+                                    onClick={() => handleAddToCart(product)}
                                     className="btn bg-orange-500 hover:bg-orange-600 text-white border-none flex-1 rounded-2xl h-14 text-lg font-bold shadow-xl shadow-orange-200"
                                 >
                                     Add to Cart

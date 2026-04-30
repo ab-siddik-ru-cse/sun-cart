@@ -25,11 +25,6 @@ export const AppProvider = ({ children }) => {
         };
         loadData();
     }, []);
-
-
-    console.log(products);
-
-
     return (
         <AppContext.Provider value={{ products, loading }}>
             {children}
