@@ -2,6 +2,7 @@
 
 import React, { useState } from "react";
 import Link from "next/link";
+import { authClient } from "@/lib/auth-client";
 
 
 const RegisterPage = () => {
@@ -15,18 +16,17 @@ const RegisterPage = () => {
 
     const handleRegister = async (e) => {
         e.preventDefault();
-        setLoading(true);
-
+        
         await authClient.signUp.email({
             email: formData.email,
             password: formData.password,
             name: formData.name,
             image: formData.image,
-            callbackURL: "/login", // সফল রেজিস্ট্রেশন এর পর লগইন পেজে যাবে
+            callbackURL: "/login",
         }, {
             onError: (ctx) => {
-                toast.error(ctx.error.message || "Registration failed!");
-                setLoading(false);
+                console.log(ctx);
+
             }
         });
     };
