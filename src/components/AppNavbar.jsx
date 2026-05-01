@@ -1,14 +1,16 @@
 "use client";
+import { AppContext } from '@/app/context/AppContext';
 import { authClient } from '@/lib/auth-client';
 import Link from 'next/link';
-import React from 'react';
+import React, { useContext } from 'react';
 import { FaShoppingCart } from 'react-icons/fa';
 
 const AppNavar = () => {
+    const { cart } = useContext(AppContext);
     const { data: session, isPending } = authClient.useSession();
 
     const user = session?.user;
-    const handleSignOut = async () =>{
+    const handleSignOut = async () => {
         await authClient.signOut();
     }
 
@@ -37,10 +39,12 @@ const AppNavar = () => {
                 <div className="flex items-center gap-4 sm:gap-6">
                     {/* Cart Icon */}
                     <div className="relative cursor-pointer group">
-                        <FaShoppingCart size={24} color='orange' />
-                        <span className="absolute -top-2 -right-2 text-[10px] bg-orange-500 text-white w-5 h-5 flex items-center justify-center rounded-full">
-                            5
-                        </span>
+                        <Link href={'/cart'}>
+                            <FaShoppingCart size={24} color='orange' />
+                            <span className="absolute -top-2 -right-2 text-[10px] bg-orange-500 text-white w-5 h-5 flex items-center justify-center rounded-full">
+                                {cart.length}
+                            </span>
+                        </Link>
                     </div>
 
                     {/* Authentication Logic */}
@@ -53,7 +57,7 @@ const AppNavar = () => {
                             <Link href="/profile" className="avatar online placeholder cursor-pointer">
                                 <div className="bg-neutral text-neutral-content rounded-full w-10 border-2 border-orange-400">
                                     {user.image ? (
-                                        <img src={user.image}/>
+                                        <img src={user.image} />
                                     ) : (
                                         <span className="text-xl">{user.name?.charAt(0).toUpperCase()}</span>
                                     )}

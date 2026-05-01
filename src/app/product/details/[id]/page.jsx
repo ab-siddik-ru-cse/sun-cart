@@ -1,38 +1,55 @@
 "use client";
 
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useContext } from "react";
 import Link from "next/link";
 import { useParams } from "next/navigation";
 import { AppContext } from "@/app/context/AppContext";
 import toast from "react-hot-toast";
 
 const ProductDetails = () => {
-    const [cart, setCart] = useState([]);
+    const { products, cart, loading, setCart } = useContext(AppContext);
     console.log(cart);
 
-    const { products } = useContext(AppContext);
     const { id } = useParams();
-
     const [quantity, setQuantity] = useState(1);
 
-    const product = products.find((p) => parseInt(p.id) === parseInt(id));
+    if (loading) {
+        return <div className="min-h-screen flex items-center justify-center">Loading...</div>;
+    }
+
+    const product = products.find(
+        (p) => String(p.id) === String(id)
+    );
 
     if (!product) {
         return (
             <div className="min-h-screen flex items-center justify-center">
-                <h1>No Products Found..!</h1>
+                <h1 className="text-2xl font-bold">No Product Found..!</h1>
             </div>
         );
     }
 
-    const handleAddToCart = (product) => {
-        setCart([...cart, product]);
+    const handleAddToCart = () => {
+        setCart((prevCart) => {
+            const existing = prevCart.find((item) => item.id === product.id);
+
+            if (existing) {
+                return prevCart.map((item) =>
+                    item.id === product.id
+                        ? { ...item, quantity: item.quantity + quantity }
+                        : item
+                );
+            } else {
+                return [...prevCart, { ...product, quantity }];
+            }
+        });
+
         toast.success(`${product.name} added to cart!`, {
-            icon: '🔥',
+            icon: "🔥",
             style: {
-                borderRadius: '10px',
-                background: '#333',
-                color: '#fff',
+                borderRadius: "10px",
+                background: "#333",
+                color: "#fff",
             },
         });
     };
@@ -42,9 +59,11 @@ const ProductDetails = () => {
             <div className="max-w-6xl mx-auto">
                 {/* Breadcrumb */}
                 <div className="text-sm breadcrumbs mb-8 text-gray-500">
-                    <ul>
-                        <li><Link href="/">Home</Link></li>
-                        <li><Link href="/products">Products</Link></li>
+                    <ul className="flex gap-2">
+                        <li><Link href="/" className="hover:text-orange-500">Home</Link></li>
+                        <li>/</li>
+                        <li><Link href="/products" className="hover:text-orange-500">Products</Link></li>
+                        <li>/</li>
                         <li className="text-orange-500 font-semibold">{product.name}</li>
                     </ul>
                 </div>
@@ -94,35 +113,43 @@ const ProductDetails = () => {
                         {/* Action Section */}
                         <div className="space-y-4 pt-6">
                             <div className="flex items-center gap-4">
-                                <div className="join border border-gray-200 rounded-lg overflow-hidden">
+                                <div className="flex border border-gray-200 rounded-lg overflow-hidden">
                                     <button
                                         onClick={() => setQuantity(prev => Math.max(1, prev - 1))}
-                                        className="join-item btn btn-ghost px-4"
+                                        className="px-4 py-2 hover:bg-gray-100"
                                     >
                                         -
                                     </button>
-                                    <span className="join-item text-orange-600 flex items-center justify-center w-12 font-bold text-lg bg-gray-100">
+                                    <span className="text-orange-600 flex items-center justify-center w-12 font-bold text-lg bg-gray-50">
                                         {quantity}
                                     </span>
                                     <button
                                         onClick={() => setQuantity(prev => Math.min(product.stock, prev + 1))}
-                                        className="join-item btn btn-ghost px-4"
+                                        className="px-4 py-2 hover:bg-gray-100"
                                     >
                                         +
                                     </button>
                                 </div>
-                                <p className="text-sm text-orange-600 italic">Only a few left!</p>
+                                {product.stock < 5 && product.stock > 0 && (
+                                    <p className="text-sm text-orange-600 italic">Only a few left!</p>
+                                )}
                             </div>
 
                             <div className="flex flex-row gap-4">
                                 <button
-                                    onClick={() => handleAddToCart(product)}
-                                    className="btn bg-orange-500 hover:bg-orange-600 text-white border-none flex-1 rounded-lg h-14 text-lg font-bold"
+                                    onClick={handleAddToCart}
+                                    disabled={product.stock <= 0}
+                                    className={`flex-1 rounded-lg h-14 text-lg font-bold transition-colors ${product.stock > 0
+                                        ? "bg-orange-500 hover:bg-orange-600 text-white"
+                                        : "bg-gray-300 cursor-not-allowed text-gray-500"
+                                        }`}
                                 >
-                                    Add to Cart
+                                    {product.stock > 0 ? "Add to Cart" : "Out of Stock"}
                                 </button>
-                                <button className="btn btn-outline border-2 border-gray-200 hover:border-orange-500 hover:bg-transparent hover:text-orange-500 rounded-lg h-14 w-14 flex items-center justify-center p-0">
-                                    <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" /></svg>
+                                <button className="border-2 border-gray-200 hover:border-orange-500 hover:text-orange-500 rounded-lg h-14 w-14 flex items-center justify-center transition-all">
+                                    <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+                                    </svg>
                                 </button>
                             </div>
                         </div>
@@ -130,14 +157,14 @@ const ProductDetails = () => {
                         {/* Extra Info */}
                         <div className="grid grid-cols-2 gap-4 pt-8 border-t border-gray-100">
                             <div className="flex items-center gap-3">
-                                <div className="p-2 bg-white-50 rounded border border-gray-200">🚚</div>
+                                <div className="text-2xl">🚚</div>
                                 <div>
                                     <p className="font-bold text-sm">Free Delivery</p>
                                     <p className="text-xs text-gray-500">Orders over $50</p>
                                 </div>
                             </div>
                             <div className="flex items-center gap-3">
-                                <div className="p-2 bg-white-50 rounded border border-gray-200">🛡️</div>
+                                <div className="text-2xl">🛡️</div>
                                 <div>
                                     <p className="font-bold text-sm">Secure Payment</p>
                                     <p className="text-xs text-gray-500">100% Secure Transaction</p>
