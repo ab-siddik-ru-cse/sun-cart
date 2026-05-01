@@ -34,7 +34,7 @@
     },
     {
         "id": 4,
-        "name": "Waterproof Beach Bag",
+        "name": "Waterproof Bag",
         "brand": "AquaPack",
         "price": 25,
         "rating": 4.5,
@@ -78,7 +78,7 @@
     },
     {
         "id": 8,
-        "name": "Aloe Vera Soothing Gel",
+        "name": "Aloe Vera Gel",
         "brand": "GlowGuard",
         "price": 12,
         "rating": 4.9,
@@ -100,7 +100,7 @@
     },
     {
         "id": 10,
-        "name": "Insulated Water Bottle",
+        "name": "Water Bottle",
         "brand": "HydroCool",
         "price": 24,
         "rating": 4.8,
@@ -111,7 +111,7 @@
     },
     {
         "id": 11,
-        "name": "Quick-Dry Swim Trunks",
+        "name": "Swim Trunks",
         "brand": "AquaPack",
         "price": 30,
         "rating": 4.6,

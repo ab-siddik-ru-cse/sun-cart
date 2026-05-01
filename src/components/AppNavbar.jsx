@@ -5,7 +5,8 @@ import Link from 'next/link';
 import React, { useContext, useState } from 'react';
 import { FaShoppingCart } from 'react-icons/fa';
 import { ImExit } from "react-icons/im";
-
+import { FaSun } from "react-icons/fa";
+import { IoCreateOutline } from "react-icons/io5";
 
 const AppNavar = () => {
     const { cart } = useContext(AppContext);
@@ -32,7 +33,7 @@ const AppNavar = () => {
 
                 {/* Logo */}
                 <Link href={'/'} className="font-extrabold text-xl sm:text-2xl md:text-3xl bg-gradient-to-r from-orange-500 to-yellow-500 text-transparent bg-clip-text">
-                    SunCart
+                    <div className='flex items-center justify-center gap-3'> <FaSun color='orange' /> <span> SunCart </span></div>
                 </Link>
 
                 {/* Desktop Nav */}
@@ -80,8 +81,12 @@ const AppNavar = () => {
                     ) : (
                         /* User Logged Out: Login & Signup */
                         <div className="flex items-center gap-2">
-                            <Link href="/login" className="btn btn-ghost btn-sm">Login</Link>
-                            <Link href="/signup" className="btn btn-warning btn-sm text-white hidden sm:flex">Sign Up</Link>
+                            <Link href="/login" className="py-1 px-3 bg-white text-orange-600 hover:bg-orange-600 hover:text-white border border-orange-600 font-normal text-lg rounded-sm  flex items-center justify-center gap-2">
+                                <div className="flex items-center justify-center gap-1"> <ImExit /> <p> Log in</p></div>
+                            </Link>
+                            <Link href="/signup" className="py-1 px-3 bg-orange-600 text-white hover:bg-white hover:text-orange-600 border border-orange-600 font-normal text-lg rounded-sm  flex items-center justify-center gap-2">
+                                <div className="flex items-center justify-center gap-1"> <IoCreateOutline /> <p>Sing up</p></div>
+                            </Link>
                         </div>
                     )}
 

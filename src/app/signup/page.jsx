@@ -32,8 +32,8 @@ const RegisterPage = () => {
     };
 
     return (
-        <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-yellow-50 to-orange-50 px-4 py-10">
-            <div className="card w-full max-w-md bg-white shadow-2xl border border-yellow-100">
+        <div className="min-h-screen flex items-center justify-center px-4 py-10">
+            <div className="card w-full max-w-md bg-white  border border-gray-200">
                 <div className="card-body">
                     <div className="text-center mb-6">
                         <h2 className="text-3xl font-black text-gray-800 tracking-tight">
@@ -97,7 +97,7 @@ const RegisterPage = () => {
 
                         <button
                             type="submit"
-                            className={`btn bg-yellow-500 hover:bg-yellow-600 border-none text-white w-full mt-6 font-bold text-lg rounded-full ${loading ? 'loading' : ''}`}
+                            className={`btn bg-yellow-500 hover:bg-yellow-600 border-none text-white w-full mt-6 font-bold text-lg rounded-sm ${loading ? 'loading' : ''}`}
                             disabled={loading}
                         >
                             {loading ? "Registering..." : "Register"}
@@ -107,7 +107,7 @@ const RegisterPage = () => {
                     <p className="text-center mt-6 text-sm text-gray-600">
                         Already have an account?{" "}
                         <Link href="/login" className="text-yellow-600 font-bold hover:underline">
-                            Sign In
+                            Log In
                         </Link>
                     </p>
                 </div>

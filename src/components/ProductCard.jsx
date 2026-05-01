@@ -1,5 +1,7 @@
 "use client";
 import Link from "next/link";
+import { FaArrowRightLong } from "react-icons/fa6";
+import { CiStar } from "react-icons/ci";
 
 const ProductCard = ({ product }) => {
     const { id, name, price, rating, image, category } = product;
@@ -31,19 +33,25 @@ const ProductCard = ({ product }) => {
 
                 {/* Title + Rating */}
                 <div className="flex justify-between items-start gap-2">
-                    <h2 className="text-gray-800 text-lg font-bold leading-snug group-hover:text-orange-600 transition">
+                    <h2 className="text-gray-600 text-lg font-bold leading-snug group-hover:text-orange-600 transition">
                         {name}
                     </h2>
 
-                    <div className="flex items-center gap-1 text-yellow-500 font-semibold bg-yellow-50 px-2 py-1 rounded-full text-xs">
-                        ★ {rating}
+                    <div className="flex items-center gap-1 text-gray-500 font-semibold bg-gray-100 px-2 py-1 rounded-full text-xs">
+                        <CiStar /> {rating}
                     </div>
                 </div>
 
                 {/* Price */}
-                <p className="text-2xl font-extrabold text-orange-600 mt-1 tracking-tight">
-                    ${price}
-                </p>
+                <div className="flex justify-between items-center  gap-2">
+                    <p className="text-2xl font-extrabold text-orange-600 mt-1 tracking-tight">
+                        ${price}
+                    </p>
+
+                    <div className="flex items-center justify-center gap-1 text-gray-500 font-semibold text-xs">
+                        In stock
+                    </div>
+                </div>
 
                 {/* Divider */}
                 <div className="h-px bg-gradient-to-r from-transparent via-gray-200 to-transparent my-3"></div>
@@ -52,12 +60,11 @@ const ProductCard = ({ product }) => {
                 <div className="card-actions">
                     <Link
                         href={`/product/details/${id}`}
-                        className="btn w-full rounded-full font-bold border-none 
-                        bg-gradient-to-r from-yellow-400 to-orange-400 
-                        hover:from-orange-500 hover:to-yellow-500 
-                        text-white shadow-md hover:shadow-lg transition-all duration-300"
+                        className="btn w-full rounded-sm font-bold border-gray-200 border 
+                        bg-white
+                        text-gray-600 hover:bg-gray-200 transition-all duration-300"
                     >
-                        View Details →
+                        View Details <FaArrowRightLong />
                     </Link>
                 </div>
             </div>

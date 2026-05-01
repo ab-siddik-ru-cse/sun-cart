@@ -1,14 +1,13 @@
 "use client";
 
-import React from "react";
+import React, { useEffect } from "react";
 import Link from "next/link";
-import { authClient } from "@/lib/auth-client"; // আপনার BetterAuth ক্লায়েন্ট পাথ
+import { authClient } from "@/lib/auth-client"; 
 import { useRouter } from "next/navigation";
 import { IoArrowBackSharp } from "react-icons/io5";
 import { FaUserEdit } from "react-icons/fa";
 
 const ProfilePage = () => {
-    // BetterAuth সেশন থেকে ইউজার ডাটা নিন
     const { data: session, isPending } = authClient.useSession();
     const router = useRouter();
 

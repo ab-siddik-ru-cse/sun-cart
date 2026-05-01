@@ -5,6 +5,9 @@ import Link from "next/link";
 import { useParams } from "next/navigation";
 import { AppContext } from "@/app/context/AppContext";
 import toast from "react-hot-toast";
+import { FaCartArrowDown } from "react-icons/fa";
+import { TbTruckDelivery } from "react-icons/tb";
+import { MdOutlineSecurity } from "react-icons/md";
 
 const ProductDetails = () => {
     const { products, cart, loading, setCart } = useContext(AppContext);
@@ -61,9 +64,7 @@ const ProductDetails = () => {
                 <div className="text-sm breadcrumbs mb-8 text-gray-500">
                     <ul className="flex gap-2">
                         <li><Link href="/" className="hover:text-orange-500">Home</Link></li>
-                        <li>/</li>
                         <li><Link href="/products" className="hover:text-orange-500">Products</Link></li>
-                        <li>/</li>
                         <li className="text-orange-500 font-semibold">{product.name}</li>
                     </ul>
                 </div>
@@ -144,7 +145,7 @@ const ProductDetails = () => {
                                         : "bg-gray-300 cursor-not-allowed text-gray-500"
                                         }`}
                                 >
-                                    {product.stock > 0 ? "Add to Cart" : "Out of Stock"}
+                                    {product.stock > 0 ? <div className="flex items-center justify-center gap-3"> <FaCartArrowDown /> Add to Cart</div> : "Out of Stock"}
                                 </button>
                                 <button className="border-2 border-gray-200 hover:border-orange-500 hover:text-orange-500 rounded-lg h-14 w-14 flex items-center justify-center transition-all">
                                     <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -157,14 +158,14 @@ const ProductDetails = () => {
                         {/* Extra Info */}
                         <div className="grid grid-cols-2 gap-4 pt-8 border-t border-gray-100">
                             <div className="flex items-center gap-3">
-                                <div className="text-2xl">🚚</div>
+                                <div className="text-2xl"><TbTruckDelivery /></div>
                                 <div>
                                     <p className="font-bold text-sm">Free Delivery</p>
                                     <p className="text-xs text-gray-500">Orders over $50</p>
                                 </div>
                             </div>
                             <div className="flex items-center gap-3">
-                                <div className="text-2xl">🛡️</div>
+                                <div className="text-2xl"><MdOutlineSecurity /></div>
                                 <div>
                                     <p className="font-bold text-sm">Secure Payment</p>
                                     <p className="text-xs text-gray-500">100% Secure Transaction</p>
