@@ -1,3 +1,7 @@
+import { FaFacebook } from 'react-icons/fa';
+import { FaInstagram } from 'react-icons/fa';
+import { FaXTwitter } from "react-icons/fa6";
+
 const Footer = () => {
   return (
     <footer className="bg-[#101727] border-t border-red-900/50 pt-16 pb-10">
@@ -11,7 +15,7 @@ const Footer = () => {
             </div>
 
             <p className="text-zinc-400 text-lg max-w-md">
-              Premium digital tools for creators, professionals, and businesses. Work smarter with our suite of powerful tools.
+              Premium products for creators, professionals, and businesses. Work smarter with our suite of powerful tools.
             </p>
           </div>
 
@@ -96,18 +100,18 @@ const Footer = () => {
             <h3 className="text-white font-medium mb-6 text-lg">Social Links</h3>
             <ul className="space-y-4 text-black flex gap-5">
               <li className="transition-all duration-300 ease-in-out hover:scale-105">
-                <a href="" className="bg-white p-3 rounded-full ">
-                  <i className="fa-brands fa-instagram"></i>
+                <a href="" className="">
+                  <FaFacebook color="#4267B2" size="2em" />
                 </a>
               </li>
               <li className="transition-all duration-300 ease-in-out hover:scale-105">
-                <a href="" className="bg-white p-3 rounded-full ">
-                  <i className="fa-brands fa-facebook"></i>
+                <a href="" className="">
+                  <FaInstagram color="#E1306C" size="2em" />
                 </a>
               </li>
               <li className="transition-all duration-300 ease-in-out hover:scale-105">
-                <a href="" className="bg-white p-3 rounded-full ">
-                  <i className="fa-brands fa-twitter"></i>
+                <a href="" className="">
+                  <FaXTwitter color="#1DA1F2" size="2em" />
                 </a>
               </li>
             </ul>
@@ -116,7 +120,7 @@ const Footer = () => {
 
 
         <div className="mt-16 pt-8 border-t border-gray-700 flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-zinc-500">
-          <div>© {new Date().getFullYear()} Digitools. All rights reserved.</div>
+          <div>© {new Date().getFullYear()} SunCart. All rights reserved.</div>
 
           <div className="flex gap-6">
             <a href="#" className="hover:text-white transition">

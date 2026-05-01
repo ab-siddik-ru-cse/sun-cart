@@ -2,7 +2,7 @@
 import Link from "next/link";
 
 const ProductCard = ({ product }) => {
-    const { id, name, price, rating, image, category } = product;
+    const { id,description, name, price, rating, image, category } = product;
     return (
         <div className="card bg-white shadow-xl hover:shadow-2xl transition-all duration-300 border border-orange-50/50 group">
             {/* Product Image */}

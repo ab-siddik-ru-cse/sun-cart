@@ -52,8 +52,7 @@ const ProductDetails = () => {
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
                     {/* Image Section */}
                     <div className="relative group">
-                        <div className="absolute -inset-1 bg-gradient-to-r from-orange-400 to-yellow-400 rounded-3xl blur opacity-20 group-hover:opacity-40 transition duration-1000"></div>
-                        <div className="relative bg-white rounded-3xl overflow-hidden shadow-2xl border border-orange-50">
+                        <div className="relative bg-white rounded-lg overflow-hidden border border-gray-200">
                             <img
                                 src={product.image}
                                 alt={product.name}
@@ -68,7 +67,7 @@ const ProductDetails = () => {
                     {/* Details Section */}
                     <div className="space-y-6">
                         <div>
-                            <span className="bg-orange-100 text-orange-600 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider">
+                            <span className="bg-orange-100 text-orange-600 px-3 py-1 rounded-lg text-xs font-bold uppercase tracking-wider">
                                 {product.category}
                             </span>
                             <h1 className="text-4xl md:text-5xl font-black text-gray-900 mt-4 leading-tight">
@@ -95,14 +94,14 @@ const ProductDetails = () => {
                         {/* Action Section */}
                         <div className="space-y-4 pt-6">
                             <div className="flex items-center gap-4">
-                                <div className="join border border-gray-200 rounded-full overflow-hidden">
+                                <div className="join border border-gray-200 rounded-lg overflow-hidden">
                                     <button
                                         onClick={() => setQuantity(prev => Math.max(1, prev - 1))}
                                         className="join-item btn btn-ghost px-4"
                                     >
                                         -
                                     </button>
-                                    <span className="join-item flex items-center justify-center w-12 font-bold text-lg bg-gray-50">
+                                    <span className="join-item text-orange-600 flex items-center justify-center w-12 font-bold text-lg bg-gray-100">
                                         {quantity}
                                     </span>
                                     <button
@@ -112,17 +111,17 @@ const ProductDetails = () => {
                                         +
                                     </button>
                                 </div>
-                                <p className="text-sm text-gray-400 italic">Only a few left!</p>
+                                <p className="text-sm text-orange-600 italic">Only a few left!</p>
                             </div>
 
                             <div className="flex flex-col sm:flex-row gap-4">
                                 <button
                                     onClick={() => handleAddToCart(product)}
-                                    className="btn bg-orange-500 hover:bg-orange-600 text-white border-none flex-1 rounded-2xl h-14 text-lg font-bold shadow-xl shadow-orange-200"
+                                    className="btn bg-orange-500 hover:bg-orange-600 text-white border-none flex-1 rounded-lg h-14 text-lg font-bold"
                                 >
                                     Add to Cart
                                 </button>
-                                <button className="btn btn-outline border-2 border-gray-200 hover:border-orange-500 hover:bg-transparent hover:text-orange-500 rounded-2xl h-14 w-14 flex items-center justify-center p-0">
+                                <button className="btn btn-outline border-2 border-gray-200 hover:border-orange-500 hover:bg-transparent hover:text-orange-500 rounded-lg h-14 w-14 flex items-center justify-center p-0">
                                     <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" /></svg>
                                 </button>
                             </div>
@@ -131,14 +130,14 @@ const ProductDetails = () => {
                         {/* Extra Info */}
                         <div className="grid grid-cols-2 gap-4 pt-8 border-t border-gray-100">
                             <div className="flex items-center gap-3">
-                                <div className="p-2 bg-yellow-50 rounded-lg text-yellow-600">🚚</div>
+                                <div className="p-2 bg-white-50 rounded border border-gray-200">🚚</div>
                                 <div>
                                     <p className="font-bold text-sm">Free Delivery</p>
                                     <p className="text-xs text-gray-500">Orders over $50</p>
                                 </div>
                             </div>
                             <div className="flex items-center gap-3">
-                                <div className="p-2 bg-orange-50 rounded-lg text-orange-600">🛡️</div>
+                                <div className="p-2 bg-white-50 rounded border border-gray-200">🛡️</div>
                                 <div>
                                     <p className="font-bold text-sm">Secure Payment</p>
                                     <p className="text-xs text-gray-500">100% Secure Transaction</p>

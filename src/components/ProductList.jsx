@@ -5,13 +5,21 @@ import ProductCard from "./ProductCard";
 import { AppContext } from "@/app/context/AppContext";
 
 const ProductList = () => {
-    const { products } = useContext(AppContext);
-    const bestProducts = products.slice(0, 4);
+    const { products , loading } = useContext(AppContext);
+    const bestProducts = products?.slice(0, 4);
+
+    if (loading) {
+        return (
+            <div className="flex justify-center items-center h-64">
+                <h1>Loading...</h1>
+            </div>
+        );
+    }
 
     if (!products || products.length === 0) {
         return (
             <div className="flex justify-center items-center h-64">
-                <span className="loading loading-spinner loading-lg text-orange-500"></span>
+                <h1>No Product Found...!</h1>
             </div>
         );
     }
