@@ -114,7 +114,7 @@ const ProductDetails = () => {
                                 <p className="text-sm text-orange-600 italic">Only a few left!</p>
                             </div>
 
-                            <div className="flex flex-col sm:flex-row gap-4">
+                            <div className="flex flex-row gap-4">
                                 <button
                                     onClick={() => handleAddToCart(product)}
                                     className="btn bg-orange-500 hover:bg-orange-600 text-white border-none flex-1 rounded-lg h-14 text-lg font-bold"

@@ -5,98 +5,139 @@ import Link from "next/link";
 import { authClient } from "@/lib/auth-client";
 import toast from "react-hot-toast";
 
-
 const LoginPage = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [loading, setLoading] = useState(false);
+    const [googleLoading, setGoogleLoading] = useState(false);
 
     const handleLogin = async (e) => {
         e.preventDefault();
         setLoading(true);
 
-        await authClient.signIn.email({
-            email,
-            password,
-            callbackURL: "/",
-        }, {
-            onError: (ctx) => {
-                toast.error(ctx.error.message || "Login failed!");
-                setLoading(false);
-            }
-        });
+        try {
+            await authClient.signIn.email(
+                {
+                    email,
+                    password,
+                    callbackURL: "/",
+                },
+                {
+                    onError: (ctx) => {
+                        toast.error(ctx.error.message || "Login failed!");
+                        setLoading(false);
+                    },
+                }
+            );
+        } catch (err) {
+            toast.error("Something went wrong!");
+            setLoading(false);
+        }
     };
 
     const handleGoogleLogin = async () => {
-        await authClient.signIn.social({
-            provider: "google",
-            callbackURL: "/",
-        });
+        setGoogleLoading(true);
+
+        try {
+            await authClient.signIn.social({
+                provider: "google",
+                callbackURL: "/",
+            });
+        } catch (err) {
+            toast.error("Google login failed!");
+            setGoogleLoading(false);
+        }
     };
 
     return (
         <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-orange-50 to-yellow-50 px-4">
+
             <div className="card w-full max-w-md bg-white shadow-2xl border border-orange-100">
                 <div className="card-body">
+
+                    {/* Header */}
                     <div className="text-center mb-6">
-                        <h2 className="text-3xl font-black text-gray-800 tracking-tight">
+                        <h2 className="text-3xl font-black text-gray-800">
                             Welcome <span className="text-orange-500">Back!</span>
                         </h2>
-                        <p className="text-gray-500 text-sm">Log in to access your summer essentials</p>
+                        <p className="text-gray-500 text-sm">
+                            Log in to access your summer essentials
+                        </p>
                     </div>
 
+                    {/* Form */}
                     <form onSubmit={handleLogin} className="space-y-4">
+
+                        {/* Email */}
                         <div className="form-control">
                             <label className="label font-semibold text-gray-700">Email</label>
-                            <br />
                             <input
                                 type="email"
                                 placeholder="example@mail.com"
-                                className="input w-full input-bordered focus:input-warning bg-gray-50 border-gray-200"
+                                className="input input-bordered w-full bg-gray-50 border-gray-200 focus:input-warning"
                                 value={email}
                                 onChange={(e) => setEmail(e.target.value)}
                                 required
                             />
                         </div>
 
+                        {/* Password */}
                         <div className="form-control">
                             <label className="label font-semibold text-gray-700">Password</label>
-                            <br />
                             <input
                                 type="password"
                                 placeholder="••••••••"
-                                className="input w-full input-bordered focus:input-warning bg-gray-50 border-gray-200"
+                                className="input input-bordered w-full bg-gray-50 border-gray-200 focus:input-warning"
                                 value={password}
                                 onChange={(e) => setPassword(e.target.value)}
                                 required
                             />
                         </div>
 
+                        {/* Login Button */}
                         <button
                             type="submit"
-                            className={`btn bg-orange-500 hover:bg-orange-600 border-none text-white w-full mt-4 font-bold text-lg rounded-full ${loading ? 'loading' : ''}`}
                             disabled={loading}
+                            className="btn bg-orange-500 hover:bg-orange-600 border-none text-white w-full mt-4 font-bold text-lg rounded-full flex items-center justify-center gap-2"
                         >
+                            {loading && (
+                                <span className="loading loading-spinner loading-sm"></span>
+                            )}
                             {loading ? "Logging in..." : "Login"}
                         </button>
                     </form>
 
+                    {/* Divider */}
                     <div className="divider text-gray-400 text-xs uppercase">OR</div>
 
+                    {/* Google Login */}
                     <button
                         onClick={handleGoogleLogin}
-                        className="btn btn-outline btn-warning w-full rounded-full flex items-center gap-2 font-bold"
+                        disabled={googleLoading}
+                        className="btn btn-outline btn-warning w-full rounded-full flex items-center justify-center gap-2 font-bold"
                     >
-                        <img src="https://www.svgrepo.com/show/475656/google-color.svg" className="w-5 h-5" alt="google" />
-                        Continue with Google
+                        {googleLoading && (
+                            <span className="loading loading-spinner loading-sm"></span>
+                        )}
+                        <img
+                            src="https://www.svgrepo.com/show/475656/google-color.svg"
+                            className="w-5 h-5"
+                            alt="google"
+                        />
+                        {googleLoading ? "Redirecting..." : "Continue with Google"}
                     </button>
 
+                    {/* Signup */}
                     <p className="text-center mt-6 text-sm text-gray-600">
                         Don't have an account?{" "}
-                        <Link href="/signup" className="text-orange-500 font-bold hover:underline">
+                        <Link
+                            href="/signup"
+                            className="text-orange-500 font-bold hover:underline"
+                        >
                             Register Now
                         </Link>
                     </p>
+
                 </div>
             </div>
         </div>
