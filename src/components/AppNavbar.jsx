@@ -2,12 +2,16 @@
 import { AppContext } from '@/app/context/AppContext';
 import { authClient } from '@/lib/auth-client';
 import Link from 'next/link';
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { FaShoppingCart } from 'react-icons/fa';
+import { ImExit } from "react-icons/im";
+
 
 const AppNavar = () => {
     const { cart } = useContext(AppContext);
     const { data: session, isPending } = authClient.useSession();
+    const [loading, setLoading] = useState(false);
+
 
     const user = session?.user;
     const handleSignOut = async () => {
@@ -53,9 +57,8 @@ const AppNavar = () => {
                     ) : user ? (
                         /* User Logged In: Profile Avatar & Name */
                         <div className="flex items-center gap-3">
-                            <span className="hidden md:block font-medium text-gray-700">{user.name}</span>
                             <Link href="/profile" className="avatar online placeholder cursor-pointer">
-                                <div className="bg-neutral text-neutral-content rounded-full w-10 border-2 border-orange-400">
+                                <div className="bg-neutral text-neutral-content rounded-full w-12">
                                     {user.image ? (
                                         <img src={user.image} />
                                     ) : (
@@ -63,7 +66,16 @@ const AppNavar = () => {
                                     )}
                                 </div>
                             </Link>
-                            <button onClick={handleSignOut} className='btn btn-danger'>Log Out</button>
+                            <button
+                                onClick={handleSignOut}
+                                disabled={loading}
+                                className="py-1 px-3 bg-white text-orange-600 hover:bg-orange-600 hover:text-white border border-orange-600 font-semibold text-lg rounded-sm  flex items-center justify-center gap-2"
+                            >
+                                {loading && (
+                                    <span className="loading loading-spinner loading-sm"></span>
+                                )}
+                                {loading ? "Logging Out..." : <div className="flex items-center justify-center gap-3"> <ImExit /> <p> Log out</p></div>}
+                            </button>
                         </div>
                     ) : (
                         /* User Logged Out: Login & Signup */

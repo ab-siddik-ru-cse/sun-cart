@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import Link from "next/link";
 import { authClient } from "@/lib/auth-client";
 import toast from "react-hot-toast";
+import { GrLogin } from "react-icons/gr";
 
 const LoginPage = () => {
     const [email, setEmail] = useState("");
@@ -50,9 +51,9 @@ const LoginPage = () => {
     };
 
     return (
-        <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-orange-50 to-yellow-50 px-4">
+        <div className="min-h-screen flex items-center justify-center px-4">
 
-            <div className="card w-full max-w-md bg-white shadow-2xl border border-orange-100">
+            <div className="card w-full max-w-md bg-white  border border-gray-200">
                 <div className="card-body">
 
                     {/* Header */}
@@ -74,7 +75,7 @@ const LoginPage = () => {
                             <input
                                 type="email"
                                 placeholder="example@mail.com"
-                                className="input input-bordered w-full bg-gray-50 border-gray-200 focus:input-warning"
+                                className="input input-bordered w-full bg-gray-50 border-gray-200 focus:input-warning mt-2"
                                 value={email}
                                 onChange={(e) => setEmail(e.target.value)}
                                 required
@@ -87,7 +88,7 @@ const LoginPage = () => {
                             <input
                                 type="password"
                                 placeholder="••••••••"
-                                className="input input-bordered w-full bg-gray-50 border-gray-200 focus:input-warning"
+                                className="input input-bordered w-full bg-gray-50 border-gray-200 focus:input-warning mt-2"
                                 value={password}
                                 onChange={(e) => setPassword(e.target.value)}
                                 required
@@ -98,12 +99,12 @@ const LoginPage = () => {
                         <button
                             type="submit"
                             disabled={loading}
-                            className="btn bg-orange-500 hover:bg-orange-600 border-none text-white w-full mt-4 font-bold text-lg rounded-full flex items-center justify-center gap-2"
+                            className="btn bg-white text-orange-600 hover:bg-orange-600 hover:text-white border border-orange-600 w-full mt-8 font-bold text-lg rounded-sm  flex items-center justify-center gap-2"
                         >
                             {loading && (
                                 <span className="loading loading-spinner loading-sm"></span>
                             )}
-                            {loading ? "Logging in..." : "Login"}
+                            {loading ? "Logging in..." : <div className="flex items-center justify-center gap-3"> <GrLogin /> <p> Log in</p></div>}
                         </button>
                     </form>
 
@@ -114,7 +115,7 @@ const LoginPage = () => {
                     <button
                         onClick={handleGoogleLogin}
                         disabled={googleLoading}
-                        className="btn btn-outline btn-warning w-full rounded-full flex items-center justify-center gap-2 font-bold"
+                        className="btn btn-outline btn-warning w-full rounded-sm flex items-center justify-center gap-2 font-bold"
                     >
                         {googleLoading && (
                             <span className="loading loading-spinner loading-sm"></span>
