@@ -6,7 +6,6 @@ import { AppContext } from "@/app/context/AppContext";
 
 const ProductList = () => {
     const { products , loading } = useContext(AppContext);
-    const bestProducts = products?.slice(0, 4);
 
     if (loading) {
         return (
@@ -37,7 +36,7 @@ const ProductList = () => {
 
                 {/* Responsive Grid */}
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
-                    {bestProducts.map((product) => (
+                    {products.map((product) => (
                         <ProductCard key={product.id} product={product} />
                     ))}
                 </div>

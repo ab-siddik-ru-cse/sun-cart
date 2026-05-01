@@ -2,6 +2,7 @@
 import { authClient } from '@/lib/auth-client';
 import Link from 'next/link';
 import React from 'react';
+import { FaShoppingCart } from 'react-icons/fa';
 
 const AppNavar = () => {
     const { data: session, isPending } = authClient.useSession();
@@ -36,7 +37,7 @@ const AppNavar = () => {
                 <div className="flex items-center gap-4 sm:gap-6">
                     {/* Cart Icon */}
                     <div className="relative cursor-pointer group">
-                        <i className="fa-solid fa-cart-shopping text-xl text-gray-700 group-hover:text-orange-500 transition-colors"></i>
+                        <FaShoppingCart size={24} color='orange' />
                         <span className="absolute -top-2 -right-2 text-[10px] bg-orange-500 text-white w-5 h-5 flex items-center justify-center rounded-full">
                             5
                         </span>
