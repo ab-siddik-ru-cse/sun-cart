@@ -7,7 +7,7 @@ const ProductCard = ({ product }) => {
     const { id, name, price, rating, image, category } = product;
 
     return (
-        <div className="card bg-white transition-all duration-300 border border-gray-100 group rounded-sm overflow-hidden hover:-translate-y-1">
+        <div className="card bg-white transition-all duration-300 border border-gray-200 group rounded-sm overflow-hidden hover:-translate-y-1">
 
             {/* Image */}
             <figure className="relative overflow-hidden">

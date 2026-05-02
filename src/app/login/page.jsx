@@ -5,12 +5,20 @@ import Link from "next/link";
 import { authClient } from "@/lib/auth-client";
 import toast from "react-hot-toast";
 import { GrLogin } from "react-icons/gr";
+import { useSearchParams } from "next/navigation";
 
 const LoginPage = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [loading, setLoading] = useState(false);
     const [googleLoading, setGoogleLoading] = useState(false);
+
+    const searchParams = useSearchParams();
+
+    const redirect = searchParams.get("redirect");
+
+    const safeRedirect =
+        redirect && redirect.startsWith("/") ? redirect : "/";
 
     const handleLogin = async (e) => {
         e.preventDefault();
@@ -21,7 +29,7 @@ const LoginPage = () => {
                 {
                     email,
                     password,
-                    callbackURL: "/",
+                    callbackURL: safeRedirect,
                 },
                 {
                     onError: (ctx) => {
@@ -42,7 +50,7 @@ const LoginPage = () => {
         try {
             await authClient.signIn.social({
                 provider: "google",
-                callbackURL: "/",
+                callbackURL: safeRedirect,
             });
         } catch (err) {
             toast.error("Google login failed!");
@@ -53,7 +61,7 @@ const LoginPage = () => {
     return (
         <div className="min-h-screen flex items-center justify-center px-4">
 
-            <div className="card w-full max-w-md bg-white  border border-gray-200">
+            <div className="card w-full max-w-md bg-white border border-gray-200">
                 <div className="card-body">
 
                     {/* Header */}
@@ -69,7 +77,6 @@ const LoginPage = () => {
                     {/* Form */}
                     <form onSubmit={handleLogin} className="space-y-4">
 
-                        {/* Email */}
                         <div className="form-control">
                             <label className="label font-semibold text-gray-700">Email</label>
                             <input
@@ -82,7 +89,6 @@ const LoginPage = () => {
                             />
                         </div>
 
-                        {/* Password */}
                         <div className="form-control">
                             <label className="label font-semibold text-gray-700">Password</label>
                             <input
@@ -95,23 +101,25 @@ const LoginPage = () => {
                             />
                         </div>
 
-                        {/* Login Button */}
                         <button
                             type="submit"
                             disabled={loading}
-                            className="btn bg-white text-orange-600 hover:bg-orange-600 hover:text-white border border-orange-600 w-full mt-8 font-bold text-lg rounded-sm  flex items-center justify-center gap-2"
+                            className="btn bg-white text-orange-600 hover:bg-orange-600 hover:text-white border border-orange-600 w-full mt-8 font-bold text-lg rounded-sm flex items-center justify-center gap-2"
                         >
                             {loading && (
                                 <span className="loading loading-spinner loading-sm"></span>
                             )}
-                            {loading ? "Logging in..." : <div className="flex items-center justify-center gap-3"> <GrLogin /> <p> Log in</p></div>}
+                            {loading ? "Logging in..." : (
+                                <div className="flex items-center justify-center gap-3">
+                                    <GrLogin />
+                                    <p>Log in</p>
+                                </div>
+                            )}
                         </button>
                     </form>
 
-                    {/* Divider */}
                     <div className="divider text-gray-400 text-xs uppercase">OR</div>
 
-                    {/* Google Login */}
                     <button
                         onClick={handleGoogleLogin}
                         disabled={googleLoading}
@@ -128,7 +136,6 @@ const LoginPage = () => {
                         {googleLoading ? "Redirecting..." : "Continue with Google"}
                     </button>
 
-                    {/* Signup */}
                     <p className="text-center mt-6 text-sm text-gray-600">
                         Don't have an account?{" "}
                         <Link

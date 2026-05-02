@@ -4,14 +4,14 @@ import React from "react";
 
 const TopBrands = () => {
     const brands = [
-        { id: 1, name: "Ray-Ban", logo: "https://logo.clearbit.com/ray-ban.com" },
-        { id: 2, name: "Nike", logo: "https://logo.clearbit.com/nike.com" },
-        { id: 3, name: "Nivea", logo: "https://logo.clearbit.com/nivea.com" },
-        { id: 4, name: "Adidas", logo: "https://logo.clearbit.com/adidas.com" },
-        { id: 5, name: "Gucci", logo: "https://logo.clearbit.com/gucci.com" },
-        { id: 6, name: "Puma", logo: "https://logo.clearbit.com/puma.com" },
-        { id: 7, name: "Zara", logo: "https://logo.clearbit.com/zara.com" },
-        { id: 8, name: "L'Oréal", logo: "https://logo.clearbit.com/loreal.com" },
+        { id: 1, name: "Ray-Ban", logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d1/Ray-Ban_logo.svg/1280px-Ray-Ban_logo.svg.png" },
+        { id: 2, name: "Nike", logo: "https://thumbs.dreamstime.com/b/vector-logos-collection-most-famous-fashion-brands-world-format-available-illustrator-ai-nike-logo-119869268.jpg" },
+        { id: 3, name: "Nivea", logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d3/NIVEA_logo_2021.svg/3840px-NIVEA_logo_2021.svg.png" },
+        { id: 4, name: "Adidas", logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/20/Adidas_Logo.svg/960px-Adidas_Logo.svg.png" },
+        { id: 5, name: "Gucci", logo: "https://download.logo.wine/logo/Gucci/Gucci-Logo.wine.png" },
+        { id: 6, name: "Puma", logo: "https://upload.wikimedia.org/wikipedia/en/d/da/Puma_complete_logo.svg" },
+        { id: 7, name: "Zara", logo: "https://www.freepnglogos.com/uploads/zara-logo-png/zara-symbol-emblem-black-brand-zara-4.png" },
+        { id: 8, name: "L'Oréal", logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9d/L%27Or%C3%A9al_logo.svg/1280px-L%27Or%C3%A9al_logo.svg.png" },
     ];
 
     // ইনফিটি লুক দেওয়ার জন্য লিস্টটি ডাবল করা হয়েছে
