@@ -1,83 +1,136 @@
 "use client";
 
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Link from "next/link";
 
 const HeroSection = () => {
-    // Array defining the slides in the hero section
+    const [currentSlide, setCurrentSlide] = useState(0);
+
     const slides = [
         {
-            id: "slide1",
+            id: 1,
             title: "SUMMER SALE",
             highlight: "50% OFF",
             description: "Dive into the season's best savings! Huge discounts on all beach essentials.",
-            bgImage: "https://images.unsplash.com/photo-1603477849227-705c424d1d80?fm=jpg&q=60&w=3000&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8dHJvcGljYWwlMjBiZWFjaHxlbnwwfHwwfHx8MA%3D%3D", // Beach scene
+            bgImage: "https://images.unsplash.com/photo-1603477849227-705c424d1d80?fm=jpg&q=60&w=3000&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8dHJvcGljYWwlMjBiZWFjaHxlbnwwfHwwfHx8MA%3D%3D",
             buttonText: "Shop Sale",
             buttonLink: "/products?category=sale",
+            theme: "from-orange-600/60",
         },
         {
-            id: "slide2",
+            id: 2,
             title: "HOT DEALS 🔥",
             highlight: "Limited Time",
             description: "Sizzling offers on sunglasses and outfits. Grab them before they are gone!",
-            bgImage: "https://static.vecteezy.com/system/resources/thumbnails/006/026/259/small/tranquil-summer-vacation-holiday-landscape-tropical-island-sunset-beach-palms-shore-calm-sea-sand-exotic-nature-scenic-inspirational-and-peaceful-seascape-reflection-amazing-sky-sunset-photo.jpg", // Sunset beach
+            bgImage: "https://static.vecteezy.com/system/resources/thumbnails/006/026/259/small/tranquil-summer-vacation-holiday-landscape-tropical-island-sunset-beach-palms-shore-calm-sea-sand-exotic-nature-scenic-inspirational-and-peaceful-seascape-reflection-amazing-sky-sunset-photo.jpg",
             buttonText: "View Deals",
             buttonLink: "/products?deals=hot",
+            theme: "from-amber-600/60",
         },
+        {
+            id: 3,
+            title: "NEW ARRIVALS",
+            highlight: "FRESH LOOK",
+            description: "Discover our latest collection of premium summer wear and accessories.",
+            bgImage: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1920&q=80",
+            buttonText: "Explore Now",
+            buttonLink: "/products",
+            theme: "from-blue-600/60",
+        }
     ];
 
-    return (
-        <section className="bg-amber-50 relative overflow-hidden">
-            {/* Dynamic Wave Pattern Overlay */}
-            <div className="absolute inset-0 opacity-10">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
-                    <path fill="#f97316" fillOpacity="1" d="M0,96L48,112C96,128,192,160,288,160C384,160,480,128,576,138.7C672,149,768,203,864,202.7C960,203,1056,149,1152,117.3C1248,85,1344,75,1392,69.3L1440,64L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path>
-                </svg>
-            </div>
+    useEffect(() => {
+        const timer = setInterval(() => {
+            setCurrentSlide((prev) => (prev === slides.length - 1 ? 0 : prev + 1));
+        }, 10000);
+        return () => clearInterval(timer);
+    }, [slides.length]);
 
-            <div className="carousel w-full h-[70vh] min-h-[400px]">
-                {slides.map((slide, index) => (
-                    <div
-                        key={slide.id}
-                        id={slide.id}
-                        className="carousel-item relative w-full flex items-center justify-center"
-                    >
-                        {/* Background Image with Amber Overlay */}
+    return (
+        <section className="relative h-[70vh] w-full overflow-hidden bg-black">
+            {/* Slides Container */}
+            <div
+                className="flex h-full w-full transition-transform duration-1000 ease-in-out"
+                style={{ transform: `translateX(-${currentSlide * 100}%)` }}
+            >
+                {slides.map((slide) => (
+                    <div key={slide.id} className="relative h-full w-full flex-shrink-0">
+                        {/* Background Image with Ken Burns Effect (Slow Zoom) */}
                         <div
-                            className="absolute inset-0 bg-cover bg-center"
+                            className={`absolute inset-0 bg-cover bg-center transition-transform duration-[10000ms] ease-linear ${slides[currentSlide].id === slide.id ? "scale-110" : "scale-100"
+                                }`}
                             style={{ backgroundImage: `url(${slide.bgImage})` }}
                         >
-                            <div className="absolute inset-0 bg-gradient-to-r from-orange-950/80 to-yellow-950/50"></div>
+                            {/* Overlays */}
+                            <div className={`absolute inset-0 bg-gradient-to-r ${slide.theme} to-transparent`}></div>
+                            <div className="absolute inset-0 bg-black/30 backdrop-blur-[2px]"></div>
                         </div>
 
                         {/* Content Container */}
-                        <div className="relative z-10 text-center text-white px-6 max-w-4xl animate-fadeInUp">
-                            <span className="inline-block px-4 py-1 rounded-full bg-yellow-400 text-orange-950 font-bold text-sm mb-4 tracking-wider">
-                                SUN-KISSED SAVINGS
-                            </span>
-                            <h1 className="text-5xl md:text-7xl font-extrabold tracking-tighter mb-2">
-                                <span className="block">{slide.title}</span>
-                                <span className="block text-yellow-300 drop-shadow-md animate__animated animate__pulse animate__infinite animate__slower my-element">{slide.highlight}</span>
-                            </h1>
-                            <p className="text-lg md:text-xl text-amber-100 mb-8 max-w-2xl mx-auto">
-                                {slide.description}
-                            </p>
-                            <Link href={slide.buttonLink} className="btn bg-orange-500 hover:bg-orange-600 text-white btn-lg px-12 border-none rounded-full shadow-lg shadow-orange-950/30 font-bold">
-                                {slide.buttonText}
-                            </Link>
-                        </div>
+                        <div className="relative z-20 flex h-full items-center justify-center px-8 md:px-20 lg:px-32">
+                            <div className={`max-w-3xl space-y-6 transition-all duration-1000 delay-300 ${slides[currentSlide].id === slide.id ? "translate-y-0 opacity-100" : "translate-y-10 opacity-0"
+                                }`}>
+                                <div className="inline-flex items-center gap-2 rounded-full bg-white/20 px-4 py-1.5 backdrop-blur-md">
+                                    <span className="h-2 w-2 animate-ping rounded-full bg-yellow-400"></span>
+                                    <span className="text-xs font-bold tracking-[0.2em] text-white uppercase">Exclusive Summer Collection</span>
+                                </div>
 
-                        {/* Carousel Navigation Buttons */}
-                        <div className="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2 z-20">
-                            <a href={`#${slides[index === 0 ? slides.length - 1 : index - 1].id}`} className="btn btn-circle bg-white/20 text-white hover:bg-white/40 border-none">
-                                ❮
-                            </a>
-                            <a href={`#${slides[index === slides.length - 1 ? 0 : index + 1].id}`} className="btn btn-circle bg-white/20 text-white hover:bg-white/40 border-none">
-                                ❯
-                            </a>
+                                <h1 className="text-4xl font-black text-white md:text-5xl lg:text-6xl leading-none">
+                                    {slide.title} <br />
+                                    <span className="bg-gradient-to-r from-yellow-300 to-orange-400 bg-clip-text text-transparent">
+                                        {slide.highlight}
+                                    </span>
+                                </h1>
+
+                                <p className="text-lg font-medium text-gray-100 md:text-xl max-w-xl leading-relaxed">
+                                    {slide.description}
+                                </p>
+
+                                <div className="flex flex-wrap gap-4 pt-4">
+                                    <Link
+                                        href={slide.buttonLink}
+                                        className="group relative overflow-hidden rounded-full bg-orange-500 px-6 py-3 font-black uppercase tracking-widest text-white shadow-2xl transition-all hover:bg-orange-600 active:scale-95"
+                                    >
+                                        <span className="relative z-10">{slide.buttonText}</span>
+                                        <div className="absolute inset-0 -translate-x-full bg-gradient-to-r from-white/0 via-white/20 to-white/0 transition-transform duration-500 group-hover:translate-x-full"></div>
+                                    </Link>
+
+                                    <button className="rounded-full border-2 border-white/30 px-6 py-3 font-black uppercase tracking-widest text-white backdrop-blur-sm transition-all hover:bg-white hover:text-black">
+                                        View Details
+                                    </button>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 ))}
+            </div>
+
+            {/* Modern Slide Indicators (Dots) */}
+            <div className="absolute bottom-10 left-1/2 z-30 flex -translate-x-1/2 gap-3">
+                {slides.map((_, index) => (
+                    <button
+                        key={index}
+                        onClick={() => setCurrentSlide(index)}
+                        className={`h-1.5 rounded-full transition-all duration-500 ${currentSlide === index ? "w-12 bg-orange-500" : "w-4 bg-white/40 hover:bg-white/60"
+                            }`}
+                    ></button>
+                ))}
+            </div>
+
+            {/* Side Navigation controls for Manual Swipe */}
+            <div className="absolute inset-y-0 right-10 z-30 hidden flex-col justify-center gap-6 md:flex">
+                <button
+                    onClick={() => setCurrentSlide(prev => (prev === 0 ? slides.length - 1 : prev - 1))}
+                    className="group flex h-14 w-14 items-center justify-center rounded-full border border-white/20 bg-black/20 text-white backdrop-blur-md transition-all hover:bg-orange-500 hover:border-orange-500"
+                >
+                    <span className="text-2xl transition-transform group-hover:-translate-y-1">↑</span>
+                </button>
+                <button
+                    onClick={() => setCurrentSlide(prev => (prev === slides.length - 1 ? 0 : prev + 1))}
+                    className="group flex h-14 w-14 items-center justify-center rounded-full border border-white/20 bg-black/20 text-white backdrop-blur-md transition-all hover:bg-orange-500 hover:border-orange-500"
+                >
+                    <span className="text-2xl transition-transform group-hover:translate-y-1">↓</span>
+                </button>
             </div>
         </section>
     );
