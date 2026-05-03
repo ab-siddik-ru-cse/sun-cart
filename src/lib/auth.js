@@ -8,6 +8,10 @@ const db = client.db("pixgen");
 const baseURL =
     process.env.BETTER_AUTH_URL || "http://localhost:3000";
 
+if (!process.env.BETTER_AUTH_SECRET) {
+    throw new Error("Missing BETTER_AUTH_SECRET");
+}
+
 export const auth = betterAuth({
     baseURL,
     secret: process.env.BETTER_AUTH_SECRET,
