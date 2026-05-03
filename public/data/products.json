@@ -141,5 +141,38 @@
         "description": "Breathable linen shorts, an essential for any summer wardrobe.",
         "image": "https://plus.unsplash.com/premium_photo-1690406381395-c8982b59a90a?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
         "category": "Outfits"
+    },
+    {
+        "id": 14,
+        "name": "UV Sunglasses",
+        "brand": "SunShade",
+        "price": 15,
+        "rating": 4.7,
+        "stock": 10,
+        "description": "Stylish UV protection sunglasses perfect for summer outings.",
+        "image": "https://images.unsplash.com/photo-1572635196237-14b3f281503f?q=80&w=880&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+        "category": "Accessories"
+    },
+    {
+        "id": 15,
+        "name": "Floral Summer Dress",
+        "brand": "BreezeWear",
+        "price": 35,
+        "rating": 4.8,
+        "stock": 15,
+        "description": "Lightweight and breathable floral dress for a cool summer look.",
+        "image": "https://images.unsplash.com/photo-1762154057377-cc9d3dd6900c?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fEZsb3JhbCUyMFN1bW1lciUyMERyZXNzfGVufDB8fDB8fHww",
+        "category": "Outfits"
+    },
+    {
+        "id": 16,
+        "name": "SPF 50+ Sunscreen",
+        "brand": "GlowGuard",
+        "price": 20,
+        "rating": 4.9,
+        "stock": 25,
+        "description": "Non-greasy SPF 50+ sunscreen to keep your skin protected from UV rays.",
+        "image": "https://images.unsplash.com/photo-1598662972299-5408ddb8a3dc?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+        "category": "Skincare"
     }
 ]

@@ -16,3 +16,6 @@
 .animate-marquee:hover {
   animation-play-state: paused;
 }
+.my-element {
+  --animate-repeat: 5s; 
+}

@@ -1,141 +1,111 @@
-import { FaFacebook } from 'react-icons/fa';
-import { FaInstagram } from 'react-icons/fa';
-import { FaXTwitter } from "react-icons/fa6";
+"use client";
+
+import React from "react";
+import Link from "next/link";
+import { FaFacebookSquare, FaGithubSquare, FaLocationArrow } from "react-icons/fa";
+import { IoCall, IoLogoInstagram } from "react-icons/io5";
+import { MdEmail } from "react-icons/md";
 
 const Footer = () => {
   return (
-    <footer className="bg-[#101727] border-t border-red-900/50 pt-16 pb-10">
-      <div className="max-w-7xl mx-auto px-6">
-        <div className="grid grid-cols-1 md:grid-cols-16 gap-12">
-          <div className="md:col-span-5">
-            <div className="flex items-center gap-3 mb-6">
-              <h2 className="text-4xl font-bold tracking-tighter text-white">
-                SunCart
-              </h2>
-            </div>
-
-            <p className="text-zinc-400 text-lg max-w-md">
-              Premium products for creators, professionals, and businesses. Work smarter with our suite of powerful tools.
-            </p>
+    <footer className="bg-gray-900 text-gray-300">
+      {/* Newsletter Section */}
+      <div className="border-b border-gray-800">
+        <div className="container mx-auto px-6 py-12 flex flex-col md:flex-row items-center justify-between gap-6">
+          <div className="text-center md:text-left">
+            <h2 className="text-2xl font-black text-white tracking-tight">
+              JOIN THE <span className="text-orange-500">SUNCART</span> CLUB
+            </h2>
+            <p className="text-sm text-gray-500 mt-1">Get 20% off on your first summer order!</p>
           </div>
-
-          <div className="md:col-span-2">
-            <h3 className="text-white font-medium mb-6 text-lg">Product</h3>
-            <ul className="space-y-4 text-zinc-400">
-              <li>
-                <a href="#" className="hover:text-white transition">
-                  Features
-                </a>
-              </li>
-              <li>
-                <a href="#" className="hover:text-white transition">
-                  Pricing
-                </a>
-              </li>
-              <li>
-                <a href="#" className="hover:text-white transition">
-                  Templates
-                </a>
-              </li>
-              <li>
-                <a href="#" className="hover:text-white transition">
-                  Integrations
-                </a>
-              </li>
-            </ul>
+          <div className="flex w-full max-w-md">
+            <input
+              type="text"
+              placeholder="Enter your email"
+              className="input input-bordered w-full rounded-l-sm bg-gray-800 border border-gray-800 focus:outline-none focus:border-orange-500"
+            />
+            <button className="bg-orange-500 hover:bg-orange-600 border-none text-white rounded-r-sm px-6">
+              Subscribe
+            </button>
           </div>
+        </div>
+      </div>
 
-          <div className="md:col-span-2">
-            <h3 className="text-white font-medium mb-6 text-lg">Company</h3>
-            <ul className="space-y-4 text-zinc-400">
-              <li>
-                <a href="#" className="hover:text-white transition">
-                  About
-                </a>
-              </li>
-              <li>
-                <a href="#" className="hover:text-white transition">
-                  Blog
-                </a>
-              </li>
-              <li>
-                <a href="#" className="hover:text-white transition">
-                  Careers
-                </a>
-              </li>
-              <li>
-                <a href="#" className="hover:text-white transition">
-                  Press
-                </a>
-              </li>
-            </ul>
-          </div>
-
-          <div className="md:col-span-3">
-            <h3 className="text-white font-medium mb-6 text-lg">Resources</h3>
-            <ul className="space-y-4 text-zinc-400">
-              <li>
-                <a href="#" className="hover:text-white transition">
-                  Documentation
-                </a>
-              </li>
-              <li>
-                <a href="#" className="hover:text-white transition">
-                  Help Center
-                </a>
-              </li>
-              <li>
-                <a href="#" className="hover:text-white transition">
-                  Community
-                </a>
-              </li>
-              <li>
-                <a href="#" className="hover:text-white transition">
-                  Contact
-                </a>
-              </li>
-            </ul>
-          </div>
-          <div className="md:col-span-3">
-            <h3 className="text-white font-medium mb-6 text-lg">Social Links</h3>
-            <ul className="space-y-4 text-black flex gap-5">
-              <li className="transition-all duration-300 ease-in-out hover:scale-105">
-                <a href="" className="">
-                  <FaFacebook color="#4267B2" size="2em" />
-                </a>
-              </li>
-              <li className="transition-all duration-300 ease-in-out hover:scale-105">
-                <a href="" className="">
-                  <FaInstagram color="#E1306C" size="2em" />
-                </a>
-              </li>
-              <li className="transition-all duration-300 ease-in-out hover:scale-105">
-                <a href="" className="">
-                  <FaXTwitter color="#1DA1F2" size="2em" />
-                </a>
-              </li>
-            </ul>
+      {/* Main Footer Content */}
+      <div className="container mx-auto px-6 py-16 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
+        {/* Brand Column */}
+        <div className="space-y-6">
+          <Link href="/" className="text-3xl font-black text-white tracking-tighter">
+            SUN<span className="text-orange-500">CART</span>
+          </Link>
+          <p className="text-sm leading-relaxed">
+            Your ultimate destination for premium summer essentials. From UV protection to beachwear, we bring the sunshine to your doorstep.
+          </p>
+          <div className="flex gap-4">
+            <button className="btn btn-circle btn-sm bg-white hover:bg-orange-500 border-none">
+              <FaFacebookSquare size={18} color="black" />
+            </button>
+            <button className="btn btn-circle btn-sm bg-white hover:bg-orange-500 border-none">
+              <IoLogoInstagram size={18} color="black" />
+            </button>
+            <button className="btn btn-circle btn-sm bg-white hover:bg-orange-500 border-none">
+              <FaGithubSquare size={18} color="black" />
+            </button>
           </div>
         </div>
 
+        {/* Quick Links */}
+        <div>
+          <h3 className="text-white font-bold text-lg mb-6">Quick Links</h3>
+          <ul className="space-y-4 text-sm font-medium">
+            <li><Link href="/products" className="hover:text-orange-500 transition-colors">All Products</Link></li>
+            <li><Link href="/profile" className="hover:text-orange-500 transition-colors">My Account</Link></li>
+            <li><Link href="/cart" className="hover:text-orange-500 transition-colors">Shopping Cart</Link></li>
+            <li><Link href="/order-history" className="hover:text-orange-500 transition-colors">Order History</Link></li>
+          </ul>
+        </div>
 
-        <div className="mt-16 pt-8 border-t border-gray-700 flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-zinc-500">
-          <div>© {new Date().getFullYear()} SunCart. All rights reserved.</div>
+        {/* Support */}
+        <div>
+          <h3 className="text-white font-bold text-lg mb-6">Customer Support</h3>
+          <ul className="space-y-4 text-sm font-medium">
+            <li><Link href="#" className="hover:text-orange-500 transition-colors">Help Center</Link></li>
+            <li><Link href="#" className="hover:text-orange-500 transition-colors">Shipping & Returns</Link></li>
+            <li><Link href="#" className="hover:text-orange-500 transition-colors">Terms & Conditions</Link></li>
+            <li><Link href="#" className="hover:text-orange-500 transition-colors">Privacy Policy</Link></li>
+          </ul>
+        </div>
 
+        {/* Contact Info */}
+        <div>
+          <h3 className="text-white font-bold text-lg mb-6">Store Info</h3>
+          <ul className="space-y-4 text-sm">
+            <li className="flex items-start gap-3">
+              <span className="text-orange-500"><FaLocationArrow size={18} /></span>
+              <span>Rajshahi, Bangladesh</span>
+            </li>
+            <li className="flex items-start gap-3">
+              <span className="text-orange-500"><IoCall  size={18}/></span>
+              <span>+880 1234 567 890</span>
+            </li>
+            <li className="flex items-start gap-3">
+              <span className="text-orange-500"><MdEmail size={18} /></span>
+              <span>support@suncart.com</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      {/* Bottom Bar */}
+      <div className="bg-black py-6 border-t border-gray-800">
+        <div className="container mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-4 text-xs font-bold uppercase tracking-widest text-gray-500">
+          <p>© 2026 SunCart. Created by AB Siddik.</p>
           <div className="flex gap-6">
-            <a href="#" className="hover:text-white transition">
-              Privacy Policy
-            </a>
-            <a href="#" className="hover:text-white transition">
-              Terms of Service
-            </a>
-            <a href="#" className="hover:text-white transition">
-              Cookies
-            </a>
-
+            <span>Security</span>
+            <span>Cookies</span>
+            <span>Accessibility</span>
           </div>
         </div>
-
       </div>
     </footer>
   );

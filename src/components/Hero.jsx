@@ -57,7 +57,7 @@ const HeroSection = () => {
                             </span>
                             <h1 className="text-5xl md:text-7xl font-extrabold tracking-tighter mb-2">
                                 <span className="block">{slide.title}</span>
-                                <span className="block text-yellow-300 drop-shadow-md">{slide.highlight}</span>
+                                <span className="block text-yellow-300 drop-shadow-md animate__animated animate__pulse animate__infinite animate__slower my-element">{slide.highlight}</span>
                             </h1>
                             <p className="text-lg md:text-xl text-amber-100 mb-8 max-w-2xl mx-auto">
                                 {slide.description}
