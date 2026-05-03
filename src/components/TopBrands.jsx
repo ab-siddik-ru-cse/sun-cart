@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import { TbBrandSafari } from "react-icons/tb";
 
 const TopBrands = () => {
     const brands = [
@@ -14,14 +15,13 @@ const TopBrands = () => {
         { id: 8, name: "L'Oréal", logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9d/L%27Or%C3%A9al_logo.svg/1280px-L%27Or%C3%A9al_logo.svg.png" },
     ];
 
-    // ইনফিটি লুক দেওয়ার জন্য লিস্টটি ডাবল করা হয়েছে
     const doubleBrands = [...brands, ...brands];
 
     return (
         <section className="py-20 bg-gray-50 overflow-hidden">
             <div className="container mx-auto px-4 mb-10 text-center">
                 <h2 className="text-3xl md:text-4xl font-black text-gray-900 tracking-tight">
-                    Shop by <span className="text-orange-500">Top Brands</span> 🏷️
+                    Shop by <span className="text-orange-500">Top Brands</span>
                 </h2>
                 <p className="text-gray-500 mt-2">The best summer essentials from the world's leading names.</p>
             </div>

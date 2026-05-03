@@ -2,6 +2,8 @@
 "use client";
 
 import React from "react";
+import { FaUmbrella } from "react-icons/fa";
+import { FaUmbrellaBeach } from "react-icons/fa6";
 
 const SummerCareTips = () => {
     const tips = [
@@ -36,13 +38,13 @@ const SummerCareTips = () => {
     ];
 
     return (
-        <section className="py-16 bg-white">
+        <section className="py-10 bg-white max-w-7xl mx-auto border-t border-gray-200 mt-10 mb-10">
             <div className="container mx-auto px-4">
                 {/* Section Header */}
                 <div className="text-center mb-12">
                     <span className="text-orange-500 font-bold uppercase tracking-widest text-sm">Expert Advice</span>
-                    <h2 className="text-3xl md:text-4xl font-black text-gray-900 mt-2">
-                        Summer <span className="text-yellow-500">Care Tips</span> ⛱️
+                    <h2 className="flex items-center justify-center gap-3 text-3xl md:text-4xl font-black text-gray-900 mt-2">
+                        Summer <span className="text-yellow-500">Care Tips</span> <FaUmbrellaBeach color="#02CCFE" size={30} />
                     </h2>
                     <p className="text-gray-500 mt-3 max-w-xl mx-auto">
                         Make the most of your summer while staying healthy and protected with our quick essential tips.
@@ -54,7 +56,7 @@ const SummerCareTips = () => {
                     {tips.map((tip) => (
                         <div
                             key={tip.id}
-                            className="group p-8 rounded-3xl bg-white border border-gray-100 shadow-sm hover:shadow-xl hover:border-orange-100 transition-all duration-300 transform hover:-translate-y-2"
+                            className="group p-8 rounded-lg bg-white border border-gray-200 hover:shadow-sm hover:border-orange-100 transition-all duration-300 transform hover:-translate-y-2"
                         >
                             <div className={`w-16 h-16 ${tip.color} rounded-2xl flex items-center justify-center text-3xl mb-6 group-hover:scale-110 transition-transform`}>
                                 {tip.icon}
@@ -68,7 +70,7 @@ const SummerCareTips = () => {
                 </div>
 
                 {/* Bonus Tip Banner */}
-                <div className="mt-12 p-6 bg-gradient-to-r from-orange-500 to-yellow-400 rounded-3xl text-white flex flex-col md:flex-row items-center justify-between gap-6 shadow-lg shadow-orange-100">
+                <div className="mt-12 p-6  rounded-lg bg-amber-400 text-white flex flex-col md:flex-row items-center justify-between gap-6 shadow-lg shadow-orange-100">
                     <div className="flex items-center gap-4">
                         <span className="text-4xl">🍉</span>
                         <div>
@@ -76,7 +78,7 @@ const SummerCareTips = () => {
                             <p className="text-sm opacity-90 font-medium">Eat water-rich fruits like Watermelon and Oranges to beat the heat naturally.</p>
                         </div>
                     </div>
-                    <button className="btn btn-ghost bg-white/20 hover:bg-white/30 border-none text-white rounded-full px-8">
+                    <button className="btn btn-ghost bg-white hover:bg-black border-none text-orange-600 rounded-full px-8">
                         Learn More
                     </button>
                 </div>

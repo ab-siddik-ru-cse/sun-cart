@@ -3,6 +3,9 @@
 import React, { useState } from "react";
 import Link from "next/link";
 import { authClient } from "@/lib/auth-client";
+import toast from "react-hot-toast";
+import { useSearchParams } from "next/navigation";
+
 
 
 const RegisterPage = () => {
@@ -13,10 +16,33 @@ const RegisterPage = () => {
         password: "",
     });
     const [loading, setLoading] = useState(false);
+    const [googleLoading, setGoogleLoading] = useState(false);
+    const searchParams = useSearchParams();
+
+    const redirect = searchParams.get("redirect");
+
+    const safeRedirect =
+        redirect && redirect.startsWith("/") ? redirect : "/";
+
+
+
+    const handleGoogleLogin = async () => {
+        setGoogleLoading(true);
+
+        try {
+            await authClient.signIn.social({
+                provider: "google",
+                callbackURL: safeRedirect,
+            });
+        } catch (err) {
+            toast.error("Google login failed!");
+            setGoogleLoading(false);
+        }
+    };
 
     const handleRegister = async (e) => {
         e.preventDefault();
-        
+
         await authClient.signUp.email({
             email: formData.email,
             password: formData.password,
@@ -25,9 +51,9 @@ const RegisterPage = () => {
             callbackURL: "/login",
         }, {
             onError: (ctx) => {
-                console.log(ctx);
-
-            }
+                toast.error(ctx.error.message || "Register failed!");
+                setLoading(false);
+            },
         });
     };
 
@@ -103,6 +129,24 @@ const RegisterPage = () => {
                             {loading ? "Registering..." : "Register"}
                         </button>
                     </form>
+                    <div className="divider text-gray-400 text-xs uppercase">OR</div>
+
+                    <button
+                        onClick={handleGoogleLogin}
+                        disabled={googleLoading}
+                        className="btn btn-outline btn-warning w-full rounded-sm flex items-center justify-center gap-2 font-bold"
+                    >
+                        {googleLoading && (
+                            <span className="loading loading-spinner loading-sm"></span>
+                        )}
+                        <img
+                            src="https://www.svgrepo.com/show/475656/google-color.svg"
+                            className="w-5 h-5"
+                            alt="google"
+                        />
+                        {googleLoading ? "Redirecting..." : "Continue with Google"}
+                    </button>
+
 
                     <p className="text-center mt-6 text-sm text-gray-600">
                         Already have an account?{" "}
