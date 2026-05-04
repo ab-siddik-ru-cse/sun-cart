@@ -46,7 +46,7 @@ SunCart provides a specialized shopping experience where users can browse high-q
 *   **Next.js 14** (App Router)
 *   **Tailwind CSS** (Utility-first styling)
 *   **DaisyUI** (Modern UI component library)
-*   **Lottie-React** (High-fidelity vector animations)
+*   **Animate css** (High-fidelity animations)
 
 **Backend & Data:**
 *   **Node.js / Express** (Server-side logic)
