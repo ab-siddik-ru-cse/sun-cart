@@ -37,7 +37,7 @@ const AppNavar = () => {
             <div className="max-w-7xl mx-auto px-4 lg:px-8 flex items-center justify-between">
 
                 {/* Logo */}
-                <Link href={'/'} className="font-extrabold text-xl sm:text-2xl md:text-3xl bg-gradient-to-r from-orange-500 to-yellow-500 text-transparent bg-clip-text">
+                <Link href={'/'} className="animate__animated animate__pulse font-extrabold text-xl sm:text-2xl md:text-3xl bg-gradient-to-r from-orange-500 to-yellow-500 text-transparent bg-clip-text">
                     <div className='flex items-center justify-center gap-3'> <FaSun color='orange' /> <span> SunCart </span></div>
                 </Link>
 

@@ -13,7 +13,7 @@ const Footer = () => {
       <div className="border-b border-gray-800">
         <div className="container mx-auto px-6 py-12 flex flex-col md:flex-row items-center justify-between gap-6">
           <div className="text-center md:text-left">
-            <h2 className="text-2xl font-black text-white tracking-tight">
+            <h2 className="text-2xl font-black text-white tracking-tight animate__animated animate__pulse animate__infinite animate__slow ">
               JOIN THE <span className="text-orange-500">SUNCART</span> CLUB
             </h2>
             <p className="text-sm text-gray-500 mt-1">Get 20% off on your first summer order!</p>
@@ -61,7 +61,7 @@ const Footer = () => {
             <li><Link href="/products" className="hover:text-orange-500 transition-colors">All Products</Link></li>
             <li><Link href="/profile" className="hover:text-orange-500 transition-colors">My Account</Link></li>
             <li><Link href="/cart" className="hover:text-orange-500 transition-colors">Shopping Cart</Link></li>
-            <li><Link href="/order-history" className="hover:text-orange-500 transition-colors">Order History</Link></li>
+            <li><Link href="#" className="hover:text-orange-500 transition-colors">Order History</Link></li>
           </ul>
         </div>
 

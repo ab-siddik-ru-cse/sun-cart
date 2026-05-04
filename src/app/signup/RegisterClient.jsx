@@ -4,18 +4,10 @@ import React, { useState } from "react";
 import Link from "next/link";
 import { authClient } from "@/lib/auth-client";
 import toast from "react-hot-toast";
-import { useSearchParams } from "next/navigation";
+import { useSearchParams, useRouter } from "next/navigation";
 
 const RegisterPage = () => {
-    const [formData, setFormData] = useState({
-        name: "",
-        email: "",
-        image: "",
-        password: "",
-    });
-    const [loading, setLoading] = useState(false);
-    const [googleLoading, setGoogleLoading] = useState(false);
-
+    const router = useRouter();
     const searchParams = useSearchParams();
 
     const redirect = searchParams.get("redirect");
@@ -25,9 +17,19 @@ const RegisterPage = () => {
             ? redirect
             : "/";
 
+    const [formData, setFormData] = useState({
+        name: "",
+        email: "",
+        image: "",
+        password: "",
+    });
+
+    const [loading, setLoading] = useState(false);
+    const [googleLoading, setGoogleLoading] = useState(false);
+
+    // 🔥 Google Login
     const handleGoogleLogin = async () => {
         setGoogleLoading(true);
-
         try {
             await authClient.signIn.social({
                 provider: "google",
@@ -39,30 +41,40 @@ const RegisterPage = () => {
         }
     };
 
+    // 🔥 Register
     const handleRegister = async (e) => {
         e.preventDefault();
         setLoading(true);
 
-        await authClient.signUp.email(
-            {
-                email: formData.email,
-                password: formData.password,
-                name: formData.name,
-                image: formData.image,
-                callbackURL: "/login",
-            },
-            {
-                onError: (ctx) => {
-                    toast.error(ctx.error.message || "Register failed!");
-                    setLoading(false);
+        try {
+            await authClient.signUp.email(
+                {
+                    email: formData.email,
+                    password: formData.password,
+                    name: formData.name,
+                    image: formData.image,
+                    callbackURL: "/login",
                 },
-            }
-        );
+                {
+                    onSuccess: () => {
+                        toast.success("Registration successful!");
+                        router.push("/login");
+                    },
+                    onError: (ctx) => {
+                        toast.error(ctx.error.message || "Register failed!");
+                    },
+                }
+            );
+        } catch (err) {
+            toast.error("Something went wrong!");
+        } finally {
+            setLoading(false);
+        }
     };
 
     return (
-        <div className="min-h-screen flex items-center justify-center px-4 py-10">
-            <div className="card w-full max-w-md bg-white  border border-gray-200">
+        <div className="min-h-screen flex items-center justify-center px-4 py-10 bg-gray-50">
+            <div className="card w-full max-w-md bg-white border border-gray-200 shadow-sm">
                 <div className="card-body">
                     <div className="text-center mb-6">
                         <h2 className="text-3xl font-black text-gray-800 tracking-tight">
@@ -73,16 +85,16 @@ const RegisterPage = () => {
                         </p>
                     </div>
 
-                    <form onSubmit={handleRegister} className="space-y-3">
-                        <div className="form-control">
-                            <label className="label py-1 font-semibold text-gray-700">
+                    <form onSubmit={handleRegister} className="space-y-4">
+                        {/* Name */}
+                        <div>
+                            <label className="font-semibold text-gray-700 text-sm">
                                 Full Name
                             </label>
-                            <br />
                             <input
                                 type="text"
-                                placeholder="Jhon Doe"
-                                className="input w-full input-bordered input-sm h-10 focus:input-warning bg-gray-50 border-gray-200"
+                                placeholder="John Doe"
+                                className="input w-full input-bordered h-10 mt-1 focus:input-warning bg-gray-50"
                                 value={formData.name}
                                 onChange={(e) =>
                                     setFormData({ ...formData, name: e.target.value })
@@ -91,15 +103,15 @@ const RegisterPage = () => {
                             />
                         </div>
 
-                        <div className="form-control">
-                            <label className="label py-1 font-semibold text-gray-700">
+                        {/* Email */}
+                        <div>
+                            <label className="font-semibold text-gray-700 text-sm">
                                 Email Address
                             </label>
-                            <br />
                             <input
                                 type="email"
                                 placeholder="example@mail.com"
-                                className="input w-full input-bordered input-sm h-10 focus:input-warning bg-gray-50 border-gray-200"
+                                className="input w-full input-bordered h-10 mt-1 focus:input-warning bg-gray-50"
                                 value={formData.email}
                                 onChange={(e) =>
                                     setFormData({ ...formData, email: e.target.value })
@@ -108,15 +120,15 @@ const RegisterPage = () => {
                             />
                         </div>
 
-                        <div className="form-control">
-                            <label className="label py-1 font-semibold text-gray-700">
+                        {/* Image */}
+                        <div>
+                            <label className="font-semibold text-gray-700 text-sm">
                                 Photo URL
                             </label>
-                            <br />
                             <input
                                 type="text"
-                                placeholder="https//:www.webpic.com"
-                                className="input w-full input-bordered input-sm h-10 focus:input-warning bg-gray-50 border-gray-200"
+                                placeholder="https://example.com/photo.jpg"
+                                className="input w-full input-bordered h-10 mt-1 focus:input-warning bg-gray-50"
                                 value={formData.image}
                                 onChange={(e) =>
                                     setFormData({ ...formData, image: e.target.value })
@@ -125,15 +137,15 @@ const RegisterPage = () => {
                             />
                         </div>
 
-                        <div className="form-control">
-                            <label className="label py-1 font-semibold text-gray-700">
+                        {/* Password */}
+                        <div>
+                            <label className="font-semibold text-gray-700 text-sm">
                                 Password
                             </label>
-                            <br />
                             <input
                                 type="password"
                                 placeholder="********"
-                                className="input w-full input-bordered input-sm h-10 focus:input-warning bg-gray-50 border-gray-200"
+                                className="input w-full input-bordered h-10 mt-1 focus:input-warning bg-gray-50"
                                 value={formData.password}
                                 onChange={(e) =>
                                     setFormData({ ...formData, password: e.target.value })
@@ -142,31 +154,38 @@ const RegisterPage = () => {
                             />
                         </div>
 
+                        {/* Submit Button Fixed */}
                         <button
                             type="submit"
-                            className={`btn bg-yellow-500 hover:bg-yellow-600 border-none text-white w-full mt-6 font-bold text-lg rounded-sm ${loading ? "loading" : ""
-                                }`}
+                            className="btn bg-yellow-500 hover:bg-yellow-600 border-none text-white w-full mt-6 font-bold text-lg rounded-sm"
                             disabled={loading}
                         >
+                            {loading && (
+                                <span className="loading loading-spinner loading-sm"></span>
+                            )}
                             {loading ? "Registering..." : "Register"}
                         </button>
                     </form>
 
-                    <div className="divider text-gray-400 text-xs uppercase">OR</div>
+                    <div className="divider text-gray-400 text-xs uppercase my-6">
+                        OR
+                    </div>
 
+                    {/* Google Button */}
                     <button
                         onClick={handleGoogleLogin}
                         disabled={googleLoading}
                         className="btn btn-outline btn-warning w-full rounded-sm flex items-center justify-center gap-2 font-bold"
                     >
-                        {googleLoading && (
+                        {googleLoading ? (
                             <span className="loading loading-spinner loading-sm"></span>
+                        ) : (
+                            <img
+                                src="https://www.svgrepo.com/show/475656/google-color.svg"
+                                className="w-5 h-5"
+                                alt="google"
+                            />
                         )}
-                        <img
-                            src="https://www.svgrepo.com/show/475656/google-color.svg"
-                            className="w-5 h-5"
-                            alt="google"
-                        />
                         {googleLoading ? "Redirecting..." : "Continue with Google"}
                     </button>
 

@@ -47,7 +47,7 @@ const HeroSection = () => {
     }, [slides.length]);
 
     return (
-        <section className="relative h-[70vh] w-full overflow-hidden bg-black">
+        <section className="relative h-[70vh] w-full overflow-hidden bg-black text-center">
             {/* Slides Container */}
             <div
                 className="flex h-full w-full transition-transform duration-1000 ease-in-out"
@@ -77,19 +77,21 @@ const HeroSection = () => {
 
                                 <h1 className="text-4xl font-black text-white md:text-5xl lg:text-6xl leading-none">
                                     {slide.title} <br />
-                                    <span className="bg-gradient-to-r from-yellow-300 to-orange-400 bg-clip-text text-transparent">
-                                        {slide.highlight}
-                                    </span>
+                                    <div className="animate__animated animate__pulse animate__infinite animate__slow">
+                                        <span className="bg-gradient-to-r   from-yellow-300 to-orange-400 bg-clip-text text-transparent">
+                                            {slide.highlight}
+                                        </span>
+                                    </div>
                                 </h1>
 
                                 <p className="text-lg font-medium text-gray-100 md:text-xl max-w-xl leading-relaxed">
                                     {slide.description}
                                 </p>
 
-                                <div className="flex flex-wrap gap-4 pt-4">
+                                <div className="flex flex-wrap gap-4 pt-4 items-center justify-center">
                                     <Link
                                         href={slide.buttonLink}
-                                        className="group relative overflow-hidden rounded-full bg-orange-500 px-6 py-3 font-black uppercase tracking-widest text-white shadow-2xl transition-all hover:bg-orange-600 active:scale-95"
+                                        className="group flex items-center justify-center relative overflow-hidden rounded-full bg-orange-500 px-6 py-3 font-black uppercase tracking-widest text-white shadow-2xl transition-all hover:bg-orange-600 active:scale-95"
                                     >
                                         <span className="relative z-10">{slide.buttonText}</span>
                                         <div className="absolute inset-0 -translate-x-full bg-gradient-to-r from-white/0 via-white/20 to-white/0 transition-transform duration-500 group-hover:translate-x-full"></div>

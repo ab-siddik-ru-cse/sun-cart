@@ -52,15 +52,18 @@ const SummerCareTips = () => {
                 </div>
 
                 {/* Tips Grid */}
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 text-center">
                     {tips.map((tip) => (
                         <div
                             key={tip.id}
                             className="group p-8 rounded-lg bg-white border border-gray-200 hover:shadow-sm hover:border-orange-100 transition-all duration-300 transform hover:-translate-y-2"
                         >
-                            <div className={`w-16 h-16 ${tip.color} rounded-2xl flex items-center justify-center text-3xl mb-6 group-hover:scale-110 transition-transform`}>
-                                {tip.icon}
+                            <div className="flex items-center justify-center">
+                                <div className={`w-16 h-16 ${tip.color} rounded-lg flex items-center justify-center text-3xl mb-6 group-hover:scale-110 transition-transform`}>
+                                    {tip.icon}
+                                </div>
                             </div>
+
                             <h3 className="text-xl font-bold text-gray-800 mb-3">{tip.title}</h3>
                             <p className="text-gray-500 text-sm leading-relaxed">
                                 {tip.description}
