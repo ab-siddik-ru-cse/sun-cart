@@ -9,11 +9,8 @@ const ProductList = () => {
     const { products, loading } = useContext(AppContext);
 
     const topProducts = products.slice(0, 4);
-    console.log(topProducts);
 
     const restProducts = products.slice(4);
-    console.log(restProducts);
-
 
     if (loading) {
         return (

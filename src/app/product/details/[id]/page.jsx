@@ -11,7 +11,6 @@ import { MdOutlineSecurity } from "react-icons/md";
 
 const ProductDetails = () => {
     const { products, cart, loading, setCart } = useContext(AppContext);
-    console.log(cart);
 
     const { id } = useParams();
     const [quantity, setQuantity] = useState(1);
