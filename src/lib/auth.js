@@ -6,7 +6,7 @@ const client = new MongoClient(process.env.MONGO_DB_URI);
 const db = client.db("pixgen");
 
 const baseURL =
-    process.env.BETTER_AUTH_URL || "http://localhost:3000";
+    process.env.BETTER_AUTH_URL;
 
 if (!process.env.BETTER_AUTH_SECRET) {
     throw new Error("Missing BETTER_AUTH_SECRET");
